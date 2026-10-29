@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Threat Modeling (STRIDE) | Aegis Cyber Advisory</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><svg viewBox="0 0 48 48"><path d="M24 3 6 10v12c0 11 7.5 19.5 18 23 10.5-3.5 18-12 18-23V10z" fill="#14284a" stroke="#19d3c5" stroke-width="2.5"/><path d="M16 24l6 6 11-12" fill="none" stroke="#19d3c5" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Aegis Cyber Advisory<small>Risk · Resilience · Assurance</small></span></a>
+<nav><ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="client-profile.html">Client &amp; Assets</a></li>
+<li><a class="active" href="threat-modeling.html">Threat Modeling</a></li>
+<li><a href="nist-csf.html">NIST CSF 2.0</a></li>
+<li><a href="controls.html">Controls</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="team.html">Team &amp; References</a></li>
+</ul></nav></div></header>
+
+<div class="pagehead"><div class="wrap"><div class="part">Part 3 · Threat Modeling</div><h1>Threat Modeling with MTMT &amp; STRIDE</h1><p>System modeling, threat identification and initial mitigation for Lifeline Medical Centre's clinical information systems.</p></div></div>
+
+<section><div class="wrap">
+<h2>Step 1 · System Modeling</h2>
+<p class="lead">Data flow diagram (DFD) of the major components. Rectangles are external entities, circles are processes, parallel lines are data stores, arrows are data flows and dashed boxes are trust boundaries.</p>
+<div class="diagram">
+<svg viewBox="0 0 1100 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data flow diagram of the hospital information system with trust boundaries">
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9fb1cc"/></marker>
+<style>
+.tb{fill:rgba(255,255,255,.02);stroke:#f59e0b;stroke-width:1.5;stroke-dasharray:8 5}
+.tbl{fill:#f59e0b;font:700 12px sans-serif;letter-spacing:.08em}
+.ent{fill:#1b3a6b;stroke:#3b82f6;stroke-width:1.5}
+.pro{fill:#0f3d44;stroke:#19d3c5;stroke-width:2}
+.sto{stroke:#a78bfa;stroke-width:2}
+.stof{fill:#241c4a}
+.t{fill:#e6edf7;font:600 12px sans-serif;text-anchor:middle}
+.tl{fill:#9fb1cc;font:11px sans-serif;text-anchor:middle}
+.fl{stroke:#9fb1cc;stroke-width:1.5;fill:none}
+.fd{stroke:#9fb1cc;stroke-width:1.3;fill:none;stroke-dasharray:4 4}
+</style></defs>
+
+<rect class="tb" x="10" y="40" width="200" height="480" rx="10"/><text class="tbl" x="22" y="60">TB1 · INTERNET (UNTRUSTED)</text>
+<rect class="tb" x="230" y="40" width="210" height="480" rx="10"/><text class="tbl" x="242" y="60">TB2 · DMZ</text>
+<rect class="tb" x="460" y="40" width="330" height="480" rx="10"/><text class="tbl" x="472" y="60">TB3 · INTERNAL CLINICAL NETWORK</text>
+<rect class="tb" x="810" y="40" width="280" height="480" rx="10"/><text class="tbl" x="822" y="60">TB4 · DATA &amp; BACKUP ZONE</text>
+
+<!-- flows -->
+<line class="fl" x1="180" y1="135" x2="293" y2="135" marker-start="url(#a)" marker-end="url(#a)"/><text class="tl" x="236" y="125">DF1 Login/booking</text>
+<line class="fl" x1="180" y1="405" x2="316" y2="173" marker-start="url(#a)" marker-end="url(#a)"/><text class="tl" x="108" y="460">DF2 Payments / claims</text>
+<line class="fl" x1="180" y1="275" x2="293" y2="275" marker-start="url(#a)" marker-end="url(#a)"/><text class="tl" x="236" y="265">DF3 Remote VPN</text>
+<line class="fl" x1="375" y1="150" x2="522" y2="215" marker-end="url(#a)"/><text class="tl" x="458" y="170">DF4 API calls</text>
+<line class="fl" x1="375" y1="268" x2="520" y2="242" marker-end="url(#a)"/><text class="tl" x="446" y="270">DF5 Admin</text>
+<line class="fl" x1="555" y1="130" x2="555" y2="188" marker-start="url(#a)" marker-end="url(#a)"/><text class="tl" x="610" y="165">DF6 Clinical use</text>
+<line class="fl" x1="555" y1="272" x2="555" y2="338" marker-start="url(#a)" marker-end="url(#a)"/><text class="tl" x="507" y="310">DF7 Orders/results</text>
+<line class="fl" x1="595" y1="248" x2="672" y2="278" marker-start="url(#a)" marker-end="url(#a)"/><text class="tl" x="660" y="250">DF8 Rx/billing</text>
+<line class="fl" x1="597" y1="218" x2="840" y2="118" marker-start="url(#a)" marker-end="url(#a)"/><text class="tl" x="735" y="140">DF9 EMR read/write</text>
+<line class="fl" x1="597" y1="368" x2="840" y2="198" marker-start="url(#a)" marker-end="url(#a)"/><text class="tl" x="760" y="250">DF10 Images/results</text>
+<line class="fl" x1="740" y1="300" x2="840" y2="274" marker-start="url(#a)" marker-end="url(#a)"/><text class="tl" x="800" y="305">DF11 Billing data</text>
+<line class="fd" x1="597" y1="388" x2="840" y2="352" marker-end="url(#a)"/><text class="tl" x="720" y="400">DF12 Log events</text>
+<path class="fd" d="M1060 112H1078V432H1060" marker-end="url(#a)"/><text class="tl" x="1030" y="486">DF13 Nightly backup</text>
+
+<!-- external entities -->
+<rect class="ent" x="30" y="110" width="150" height="50" rx="4"/><text class="t" x="105" y="132">E1 Patients</text><text class="tl" x="105" y="148">web / mobile</text>
+<rect class="ent" x="30" y="250" width="150" height="50" rx="4"/><text class="t" x="105" y="272">E2 Vendor Support</text><text class="tl" x="105" y="288">remote access</text>
+<rect class="ent" x="30" y="380" width="150" height="50" rx="4"/><text class="t" x="105" y="402">E3 Payment Gateway</text><text class="tl" x="105" y="418">&amp; Insurers</text>
+<rect class="ent" x="480" y="80" width="150" height="50" rx="4"/><text class="t" x="555" y="102">E4 Clinical &amp; Admin</text><text class="tl" x="555" y="118">staff workstations</text>
+
+<!-- processes -->
+<circle class="pro" cx="335" cy="135" r="42"/><text class="t" x="335" y="131">P1 Portal</text><text class="t" x="335" y="146">&amp; API Gateway</text>
+<circle class="pro" cx="335" cy="275" r="42"/><text class="t" x="335" y="271">P2 VPN /</text><text class="t" x="335" y="286">Remote Access</text>
+<circle class="pro" cx="555" cy="230" r="42"/><text class="t" x="555" y="226">P3 HIS / EMR</text><text class="t" x="555" y="241">Application</text>
+<circle class="pro" cx="555" cy="380" r="42"/><text class="t" x="555" y="376">P4 LIS &amp;</text><text class="t" x="555" y="391">RIS/PACS</text>
+<circle class="pro" cx="715" cy="300" r="42"/><text class="t" x="715" y="296">P5 Pharmacy</text><text class="t" x="715" y="311">&amp; Billing</text>
+
+<!-- data stores -->
+<g><rect class="stof" x="840" y="90" width="220" height="44"/><line class="sto" x1="840" y1="90" x2="1060" y2="90"/><line class="sto" x1="840" y1="134" x2="1060" y2="134"/><text class="t" x="950" y="116">D1 EMR Database</text></g>
+<g><rect class="stof" x="840" y="170" width="220" height="44"/><line class="sto" x1="840" y1="170" x2="1060" y2="170"/><line class="sto" x1="840" y1="214" x2="1060" y2="214"/><text class="t" x="950" y="196">D2 PACS Image Store</text></g>
+<g><rect class="stof" x="840" y="250" width="220" height="44"/><line class="sto" x1="840" y1="250" x2="1060" y2="250"/><line class="sto" x1="840" y1="294" x2="1060" y2="294"/><text class="t" x="950" y="276">D3 Billing &amp; Pharmacy DB</text></g>
+<g><rect class="stof" x="840" y="330" width="220" height="44"/><line class="sto" x1="840" y1="330" x2="1060" y2="330"/><line class="sto" x1="840" y1="374" x2="1060" y2="374"/><text class="t" x="950" y="356">D4 Audit &amp; Security Logs</text></g>
+<g><rect class="stof" x="840" y="410" width="220" height="44"/><line class="sto" x1="840" y1="410" x2="1060" y2="410"/><line class="sto" x1="840" y1="454" x2="1060" y2="454"/><text class="t" x="950" y="436">D5 Backup Repository</text></g>
+</svg></div>
+
+<div class="grid g3" style="margin-top:22px">
+<div class="card"><h3>External Entities</h3><ul><li>E1 Patients (portal / mobile app)</li><li>E2 Third-party vendor support</li><li>E3 Payment gateway and insurers</li><li>E4 Clinical and administrative staff</li></ul></div>
+<div class="card"><h3>Processes &amp; Data Stores</h3><ul><li>P1 Portal &amp; API gateway, P2 VPN</li><li>P3 HIS/EMR, P4 LIS &amp; PACS, P5 Pharmacy &amp; Billing</li><li>D1 EMR DB, D2 PACS, D3 Billing DB</li><li>D4 Audit logs, D5 Backups</li></ul></div>
+<div class="card"><h3>Trust Boundaries</h3><ul><li><b>TB1</b> Internet to DMZ</li><li><b>TB2</b> DMZ to internal clinical network</li><li><b>TB3</b> Internal network to data zone</li><li><b>TB4</b> Production data to backup storage</li></ul></div>
+</div>
+
+<h2 style="margin-top:44px">MTMT Evidence</h2>
+<p class="lead">Screenshots of the Microsoft Threat Modeling Tool model and the generated threat report. Replace the placeholder files in the <code>images</code> folder with your own screenshots (see instructions in <code>images/README.txt</code>).</p>
+<div class="grid g2">
+<div class="card"><h3>MTMT Data Flow Diagram</h3>
+<img src="images/mtmt-model.png" alt="MTMT data flow diagram screenshot" style="width:100%;border-radius:8px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<div class="placeholder" style="display:none"><b>Add screenshot: images/mtmt-model.png</b>Your MTMT design view showing elements and trust boundaries.</div></div>
+<div class="card"><h3>MTMT Threat Report</h3>
+<img src="images/mtmt-report.png" alt="MTMT generated threat report screenshot" style="width:100%;border-radius:8px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<div class="placeholder" style="display:none"><b>Add screenshot: images/mtmt-report.png</b>Your MTMT analysis view or exported HTML report.</div></div>
+</div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<h2>Step 2 &amp; 3 · STRIDE Threat Register with Initial Mitigation</h2>
+<p class="lead">18 threats identified: <b>10 High</b>, <b>7 Medium</b>, <b>1 Low</b>. Filter by STRIDE category.</p>
+<div class="tabs" id="tabs">
+<button class="on" data-f="All">All</button><button data-f="S">Spoofing</button><button data-f="T">Tampering</button><button data-f="R">Repudiation</button><button data-f="I">Information Disclosure</button><button data-f="D">Denial of Service</button><button data-f="E">Elevation of Privilege</button>
+</div>
+<div class="tablewrap"><table id="stride">
+<thead><tr><th>ID</th><th>STRIDE</th><th>Threat Description</th><th>Affected Component</th><th>Severity</th><th>Initial Mitigation</th></tr></thead>
+<tbody>
+<tr data-c="S"><td>T01</td><td>Spoofing</td><td>Phishing or credential theft lets an attacker impersonate a clinician and access patient records.</td><td>P3 HIS/EMR, E4 workstations</td><td><span class="badge High">High</span></td><td>MFA for all staff, phishing-awareness training, account lockout and conditional access.</td></tr>
+<tr data-c="S"><td>T02</td><td>Spoofing</td><td>Credential stuffing against the patient portal to impersonate patients.</td><td>P1 Portal &amp; API gateway</td><td><span class="badge Medium">Medium</span></td><td>OTP/MFA for patients, rate limiting, CAPTCHA, breached-password checks.</td></tr>
+<tr data-c="S"><td>T03</td><td>Spoofing</td><td>Attacker poses as a vendor to obtain remote support access.</td><td>P2 VPN / remote access</td><td><span class="badge High">High</span></td><td>Vendor accounts with MFA, time-limited access approval, session recording, third-party agreements.</td></tr>
+<tr data-c="T"><td>T04</td><td>Tampering</td><td>SQL injection or API manipulation alters or deletes patient records.</td><td>P1 API, D1 EMR database</td><td><span class="badge High">High</span></td><td>Parameterized queries, input validation, WAF, secure code review, penetration testing.</td></tr>
+<tr data-c="T"><td>T05</td><td>Tampering</td><td>Lab values or imaging results are modified in transit or at rest, leading to wrong treatment.</td><td>P4 LIS/PACS, D2</td><td><span class="badge High">High</span></td><td>TLS for all flows, hashing/digital signatures on results, write-restricted roles, integrity monitoring.</td></tr>
+<tr data-c="T"><td>T06</td><td>Tampering</td><td>Ransomware encrypts or deletes backups so recovery is impossible.</td><td>D5 Backup repository</td><td><span class="badge High">High</span></td><td>Immutable and offline backup copies, separate backup credentials, EDR, restore testing.</td></tr>
+<tr data-c="R"><td>T07</td><td>Repudiation</td><td>A user denies changing a prescription because audit trails are incomplete.</td><td>P3 HIS, P5 Pharmacy, D4</td><td><span class="badge Medium">Medium</span></td><td>Tamper-resistant audit logging, unique user IDs, NTP time synchronization, log retention policy.</td></tr>
+<tr data-c="R"><td>T08</td><td>Repudiation</td><td>Shared workstation accounts make it impossible to attribute actions to individuals.</td><td>E4 staff workstations</td><td><span class="badge Medium">Medium</span></td><td>Ban shared accounts, tap-in smart card SSO, acceptable use policy.</td></tr>
+<tr data-c="R"><td>T09</td><td>Repudiation</td><td>Patient disputes an online payment or insurer disputes a claim submission.</td><td>E3 gateway, P5 Billing</td><td><span class="badge Low">Low</span></td><td>Signed e-receipts, transaction logging, daily reconciliation with gateway.</td></tr>
+<tr data-c="I"><td>T10</td><td>Information Disclosure</td><td>Staff browse records without clinical need (snooping) or excessive access exposes data.</td><td>D1 EMR database, P3</td><td><span class="badge High">High</span></td><td>Role-based access control, break-glass with review, access monitoring, confidentiality agreements.</td></tr>
+<tr data-c="I"><td>T11</td><td>Information Disclosure</td><td>Sniffing of unencrypted internal traffic or rogue Wi-Fi exposes clinical data.</td><td>LAN/Wi-Fi, DF7, DF9</td><td><span class="badge Medium">Medium</span></td><td>TLS internally, WPA3-Enterprise, VLAN segmentation, network access control.</td></tr>
+<tr data-c="I"><td>T12</td><td>Information Disclosure</td><td>Broken API authorization, lost laptops or removable media leak patient data.</td><td>P1 API, staff devices</td><td><span class="badge High">High</span></td><td>Object-level authorization checks, full-disk encryption, USB control, DLP, data classification.</td></tr>
+<tr data-c="D"><td>T13</td><td>Denial of Service</td><td>DDoS attack takes the patient portal and public website offline.</td><td>P1 Portal</td><td><span class="badge Medium">Medium</span></td><td>CDN/DDoS protection from ISP, rate limiting, autoscaling, manual fallback for booking.</td></tr>
+<tr data-c="D"><td>T14</td><td>Denial of Service</td><td>Ransomware halts HIS, LIS and PACS, forcing paper-based care.</td><td>P3, P4, servers</td><td><span class="badge High">High</span></td><td>EDR, network segmentation, patching, tested disaster recovery, downtime procedures.</td></tr>
+<tr data-c="D"><td>T15</td><td>Denial of Service</td><td>Power or network failure in the data centre stops all services.</td><td>Infrastructure, D1–D5</td><td><span class="badge Medium">Medium</span></td><td>UPS and generator, redundant links, high-availability design, environmental monitoring.</td></tr>
+<tr data-c="E"><td>T16</td><td>Elevation of Privilege</td><td>Unpatched server vulnerabilities allow attackers to gain administrator control.</td><td>P3 HIS servers, P4</td><td><span class="badge High">High</span></td><td>Patch management, vulnerability scanning, system hardening baselines.</td></tr>
+<tr data-c="E"><td>T17</td><td>Elevation of Privilege</td><td>Over-privileged service and database accounts or local admin rights enable full takeover.</td><td>D1, D3, E4 workstations</td><td><span class="badge High">High</span></td><td>Least privilege, privileged access management, periodic access reviews, remove local admin.</td></tr>
+<tr data-c="E"><td>T18</td><td>Elevation of Privilege</td><td>A compromised medical device is used as a pivot into the clinical network.</td><td>IoMT devices, TB3</td><td><span class="badge Medium">Medium</span></td><td>Device inventory, IoMT VLAN isolation, network access control, vendor patching agreements.</td></tr>
+</tbody></table></div>
+
+<h3 style="margin-top:30px">Severity Distribution</h3>
+<div class="grid g3">
+<div class="card"><b>High · 10 threats</b><div class="bar"><i style="width:56%;background:var(--hi)"></i></div></div>
+<div class="card"><b>Medium · 7 threats</b><div class="bar"><i style="width:39%;background:var(--med)"></i></div></div>
+<div class="card"><b>Low · 1 threat</b><div class="bar"><i style="width:6%;background:var(--lo)"></i></div></div>
+</div>
+<div class="callout"><b>Severity method:</b> Severity reflects likelihood combined with impact on patient safety, confidentiality of health data and service continuity, judged against the CIA requirements in the Information Asset Register.</div>
+</div></section>
+
+<footer><div class="wrap"><span>© 2026 Aegis Cyber Advisory. Academic project, MPMIS 516, University of Dhaka.</span><span>Threat model: STRIDE via MTMT</span></div></footer>
+<script>
+document.querySelectorAll('#tabs button').forEach(function(b){b.addEventListener('click',function(){
+document.querySelectorAll('#tabs button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+var f=b.getAttribute('data-f');
+document.querySelectorAll('#stride tbody tr').forEach(function(r){r.style.display=(f==='All'||r.getAttribute('data-c')===f)?'':'none'});
+});});
+</script>
+</body></html>

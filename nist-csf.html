@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NIST CSF 2.0 Assessment | Aegis Cyber Advisory</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><svg viewBox="0 0 48 48"><path d="M24 3 6 10v12c0 11 7.5 19.5 18 23 10.5-3.5 18-12 18-23V10z" fill="#14284a" stroke="#19d3c5" stroke-width="2.5"/><path d="M16 24l6 6 11-12" fill="none" stroke="#19d3c5" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Aegis Cyber Advisory<small>Risk · Resilience · Assurance</small></span></a>
+<nav><ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="client-profile.html">Client &amp; Assets</a></li>
+<li><a href="threat-modeling.html">Threat Modeling</a></li>
+<li><a class="active" href="nist-csf.html">NIST CSF 2.0</a></li>
+<li><a href="controls.html">Controls</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="team.html">Team &amp; References</a></li>
+</ul></nav></div></header>
+
+<div class="pagehead"><div class="wrap"><div class="part">Part 4 · Posture Assessment</div><h1>Security Posture Assessment: NIST CSF 2.0</h1><p>Current security practices at Lifeline Medical Centre evaluated across the six CSF 2.0 functions, with strengths, weaknesses and gaps.</p></div></div>
+
+<section><div class="wrap">
+<h2>Maturity Overview</h2>
+<p class="lead">Scored on a 1–4 scale aligned to CSF implementation tiers: 1 Partial, 2 Risk Informed, 3 Repeatable, 4 Adaptive. Target for 24 months: Tier 3 across all functions.</p>
+<div class="grid g3">
+<div class="card"><h3>Govern <span style="float:right;color:var(--teal)">1.0</span></h3><div class="bar"><i style="width:25%"></i></div></div>
+<div class="card"><h3>Identify <span style="float:right;color:var(--teal)">1.5</span></h3><div class="bar"><i style="width:37.5%"></i></div></div>
+<div class="card"><h3>Protect <span style="float:right;color:var(--teal)">2.0</span></h3><div class="bar"><i style="width:50%"></i></div></div>
+<div class="card"><h3>Detect <span style="float:right;color:var(--teal)">1.0</span></h3><div class="bar"><i style="width:25%"></i></div></div>
+<div class="card"><h3>Respond <span style="float:right;color:var(--teal)">1.5</span></h3><div class="bar"><i style="width:37.5%"></i></div></div>
+<div class="card"><h3>Recover <span style="float:right;color:var(--teal)">1.5</span></h3><div class="bar"><i style="width:37.5%"></i></div></div>
+</div>
+<div class="callout"><b>Overall: 1.4 / 4 (Tier 1–2).</b> Foundational controls such as firewalls and antivirus exist, but governance, monitoring and recovery are informal and untested. Scores are the consultants' judgment from the hypothetical interview and document review.</div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<h2>Function-by-Function Assessment</h2>
+<div class="grid g2">
+
+<div class="card"><h3>GV · Govern <span class="badge High" style="float:right">Tier 1</span></h3>
+<p><b>Current practice:</b> A short IT usage notice exists; the CIO handles security part-time. No board-level reporting or formal risk appetite.</p>
+<ul><li><b>Strength:</b> Management is aware of ransomware news and supportive of improvement.</li>
+<li><b>Weakness:</b> No approved information security policy set, no security roles or budget line.</li>
+<li><b>Gap:</b> Missing policy framework, risk management strategy, supply chain oversight (GV.PO, GV.RM, GV.SC).</li></ul>
+<p><b>Justification:</b> Without governance, technical controls are ad hoc and not tied to risk or accountability.</p></div>
+
+<div class="card"><h3>ID · Identify <span class="badge Medium" style="float:right">Tier 1.5</span></h3>
+<p><b>Current practice:</b> Spreadsheet list of servers and software; no formal data classification; risk assessment never performed.</p>
+<ul><li><b>Strength:</b> IT team knows the main clinical systems and their owners informally.</li>
+<li><b>Weakness:</b> Incomplete inventory (IoMT, shadow IT, cloud services); no vulnerability scanning.</li>
+<li><b>Gap:</b> No asset register with CIA ratings, risk assessment or third-party inventory (ID.AM, ID.RA).</li></ul>
+<p><b>Justification:</b> Crown Jewels were not formally recognized, so protection is not prioritized.</p></div>
+
+<div class="card"><h3>PR · Protect <span class="badge Medium" style="float:right">Tier 2</span></h3>
+<p><b>Current practice:</b> Perimeter firewall, endpoint antivirus, password login, basic user roles in HIS, annual induction briefing.</p>
+<ul><li><b>Strength:</b> Firewall and antivirus deployed; server room has locked access.</li>
+<li><b>Weakness:</b> No MFA, flat network, shared accounts, inconsistent patching, partial encryption.</li>
+<li><b>Gap:</b> Missing MFA, RBAC enforcement, segmentation, encryption, security training (PR.AA, PR.DS, PR.AT, PR.PS).</li></ul>
+<p><b>Justification:</b> Protections exist, but weak identity controls leave the Crown Jewels exposed to credential theft.</p></div>
+
+<div class="card"><h3>DE · Detect <span class="badge High" style="float:right">Tier 1</span></h3>
+<p><b>Current practice:</b> Logs remain on individual servers; no central monitoring; incidents are noticed when users complain.</p>
+<ul><li><b>Strength:</b> HIS records basic user activity.</li>
+<li><b>Weakness:</b> No SIEM, alerting, or review of logs; no endpoint detection.</li>
+<li><b>Gap:</b> Missing continuous monitoring and adverse event analysis (DE.CM, DE.AE).</li></ul>
+<p><b>Justification:</b> Attacks could dwell for weeks undetected, increasing data theft and ransomware impact.</p></div>
+
+<div class="card"><h3>RS · Respond <span class="badge Medium" style="float:right">Tier 1.5</span></h3>
+<p><b>Current practice:</b> IT staff react informally; call list kept by IT manager; no documented incident plan or regulator/patient notification process.</p>
+<ul><li><b>Strength:</b> Experienced IT staff who respond quickly to outages.</li>
+<li><b>Weakness:</b> No defined roles, severity levels, evidence handling or communications plan.</li>
+<li><b>Gap:</b> Missing incident response plan, exercises and reporting (RS.MA, RS.AN, RS.CO).</li></ul>
+<p><b>Justification:</b> Delayed, uncoordinated response magnifies patient safety and reputational impact.</p></div>
+
+<div class="card"><h3>RC · Recover <span class="badge Medium" style="float:right">Tier 1.5</span></h3>
+<p><b>Current practice:</b> Daily backups to a NAS on the same network; restore never tested; no formal disaster recovery plan.</p>
+<ul><li><b>Strength:</b> Backups are taken regularly and generator covers the data centre.</li>
+<li><b>Weakness:</b> Backups reachable by attackers; no offsite or immutable copy; unknown recovery times.</li>
+<li><b>Gap:</b> Missing DR plan, RTO/RPO targets, restore testing, recovery communications (RC.RP, RC.CO).</li></ul>
+<p><b>Justification:</b> A ransomware event could destroy both production data and backups.</p></div>
+</div></div></section>
+
+<section><div class="wrap">
+<h2>Gap Analysis Summary Table</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Function</th><th>Current Practices</th><th>Strengths</th><th>Weaknesses</th><th>Key Gaps</th><th>Score</th><th>Priority</th></tr></thead>
+<tbody>
+<tr><td><b>Govern</b></td><td>Basic IT notice; part-time security oversight</td><td>Management awareness</td><td>No policies, roles, budget</td><td>Policy framework, risk strategy, vendor oversight</td><td>1.0</td><td><span class="badge High">High</span></td></tr>
+<tr><td><b>Identify</b></td><td>Informal inventory spreadsheet</td><td>Known system owners</td><td>Incomplete inventory, no risk assessment</td><td>Asset register, classification, risk assessment</td><td>1.5</td><td><span class="badge High">High</span></td></tr>
+<tr><td><b>Protect</b></td><td>Firewall, antivirus, passwords, basic roles</td><td>Perimeter defence, locked server room</td><td>No MFA, flat network, shared accounts</td><td>MFA, RBAC, segmentation, encryption, training</td><td>2.0</td><td><span class="badge High">High</span></td></tr>
+<tr><td><b>Detect</b></td><td>Local logs only</td><td>HIS activity records</td><td>No SIEM or alerting</td><td>Central logging, monitoring, EDR</td><td>1.0</td><td><span class="badge High">High</span></td></tr>
+<tr><td><b>Respond</b></td><td>Informal IT reaction</td><td>Skilled IT staff</td><td>No documented plan or roles</td><td>IR plan, playbooks, exercises, notification</td><td>1.5</td><td><span class="badge Medium">Medium</span></td></tr>
+<tr><td><b>Recover</b></td><td>Daily backup to on-network NAS</td><td>Regular backups, generator</td><td>Backups not isolated or tested</td><td>DR plan, offline copy, restore tests, RTO/RPO</td><td>1.5</td><td><span class="badge High">High</span></td></tr>
+</tbody></table></div>
+</div></section>
+
+<footer><div class="wrap"><span>© 2026 Aegis Cyber Advisory. Academic project, MPMIS 516, University of Dhaka.</span><span>Framework: NIST CSF 2.0</span></div></footer>
+</body></html>

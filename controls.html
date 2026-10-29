@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recommended Security Controls | Aegis Cyber Advisory</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><svg viewBox="0 0 48 48"><path d="M24 3 6 10v12c0 11 7.5 19.5 18 23 10.5-3.5 18-12 18-23V10z" fill="#14284a" stroke="#19d3c5" stroke-width="2.5"/><path d="M16 24l6 6 11-12" fill="none" stroke="#19d3c5" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Aegis Cyber Advisory<small>Risk · Resilience · Assurance</small></span></a>
+<nav><ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="client-profile.html">Client &amp; Assets</a></li>
+<li><a href="threat-modeling.html">Threat Modeling</a></li>
+<li><a href="nist-csf.html">NIST CSF 2.0</a></li>
+<li><a class="active" href="controls.html">Controls</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="team.html">Team &amp; References</a></li>
+</ul></nav></div></header>
+
+<div class="pagehead"><div class="wrap"><div class="part">Part 5 · Security Controls</div><h1>Recommended Information System Security Controls</h1><p>Administrative, technical and physical controls mapped to the STRIDE threats and NIST CSF 2.0 gaps identified for Lifeline Medical Centre.</p></div></div>
+
+<section><div class="wrap">
+<h2>Administrative Controls</h2>
+<p class="lead">Policies, people and process controls that create accountability and consistent behavior.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Control</th><th>What We Recommend</th><th>Addresses Threats</th><th>NIST Gap</th></tr></thead>
+<tbody>
+<tr><td><b>Information Security Policy Framework</b></td><td>Board-approved policy, supported by standards on access, data classification, backup, patching and remote access; reviewed annually.</td><td>T08, T10, T12</td><td>Govern</td></tr>
+<tr><td><b>Acceptable Use Policy (AUP)</b></td><td>Signed by all staff: no shared accounts, no personal removable media, rules for email, internet and mobile devices.</td><td>T08, T12</td><td>Govern, Protect</td></tr>
+<tr><td><b>Security Awareness &amp; Training</b></td><td>Induction plus annual training, monthly phishing simulations, role-specific modules for doctors, nurses and IT admins.</td><td>T01, T02, T12</td><td>Protect</td></tr>
+<tr><td><b>Risk Management Practice</b></td><td>Annual risk assessment using the asset register; risk register owned by a Security Manager and reported quarterly to management.</td><td>All</td><td>Govern, Identify</td></tr>
+<tr><td><b>Incident Response Procedures</b></td><td>IR plan with roles, severity levels, playbooks (ransomware, data breach), contact tree, regulator and patient notification, annual tabletop exercise.</td><td>T06, T14</td><td>Respond</td></tr>
+<tr><td><b>Vendor &amp; Third-Party Security Management</b></td><td>Security due diligence, contract clauses (breach notice, audit rights), time-bound vendor access, annual review of critical vendors.</td><td>T03, T18</td><td>Govern</td></tr>
+<tr><td><b>Business Continuity &amp; DR Plan</b></td><td>Define RTO/RPO per system, manual downtime procedures for wards, annual DR exercise.</td><td>T14, T15</td><td>Recover</td></tr>
+<tr><td><b>Access Review &amp; Joiner-Mover-Leaver</b></td><td>HR-triggered account lifecycle, quarterly access recertification by asset owners.</td><td>T10, T17</td><td>Protect</td></tr>
+</tbody></table></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<h2>Technical Controls</h2>
+<p class="lead">Technology safeguards that directly counter the high-severity STRIDE threats.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Control</th><th>What We Recommend</th><th>Addresses Threats</th><th>NIST Gap</th></tr></thead>
+<tbody>
+<tr><td><b>Authentication &amp; MFA</b></td><td>MFA for all remote, privileged and email access first, then all clinical staff; OTP for patient portal; password policy and lockout.</td><td>T01, T02, T03</td><td>Protect</td></tr>
+<tr><td><b>Access Control Model: RBAC</b></td><td>Role-Based Access Control with roles such as Doctor, Nurse, Lab Technician, Pharmacist, Billing Clerk, IT Admin; least privilege plus break-glass emergency access with mandatory review. Privileged Access Management for administrators.</td><td>T10, T16, T17</td><td>Protect</td></tr>
+<tr><td><b>Encryption</b></td><td>TLS 1.2+ for all flows; database and backup encryption (AES-256); full-disk encryption on laptops; managed keys.</td><td>T05, T11, T12</td><td>Protect</td></tr>
+<tr><td><b>Firewalls &amp; Segmentation</b></td><td>Next-generation firewall, DMZ for portal, separate VLANs for clinical, IoMT, guest Wi-Fi and data zone; web application firewall for portal.</td><td>T04, T11, T13, T18</td><td>Protect</td></tr>
+<tr><td><b>Anti-malware &amp; EDR</b></td><td>Endpoint detection and response on servers and workstations, email filtering, application allow-listing on critical servers.</td><td>T06, T14</td><td>Protect, Detect</td></tr>
+<tr><td><b>Logging &amp; Monitoring</b></td><td>Central SIEM collecting HIS, AD, firewall and EDR logs; tamper-resistant retention; alerts for unusual record access and admin activity.</td><td>T07, T10, T16</td><td>Detect</td></tr>
+<tr><td><b>Backup &amp; Recovery</b></td><td>3-2-1 backups with immutable and offline copy, separate credentials, quarterly restore tests, high availability for HIS database.</td><td>T06, T14, T15</td><td>Recover</td></tr>
+<tr><td><b>Patch &amp; Vulnerability Management</b></td><td>Monthly patch cycle, risk-based emergency patching, authenticated vulnerability scans, annual penetration test.</td><td>T04, T16</td><td>Identify, Protect</td></tr>
+<tr><td><b>Data Loss Prevention</b></td><td>Email/USB controls, classification labels, alerts on bulk record export.</td><td>T12</td><td>Protect</td></tr>
+</tbody></table></div>
+
+<h3 style="margin-top:30px">Access Control Matrix (RBAC Summary)</h3>
+<div class="tablewrap"><table style="min-width:640px">
+<thead><tr><th>Role</th><th>EMR</th><th>Lab / PACS</th><th>Pharmacy</th><th>Billing</th><th>System Admin</th></tr></thead>
+<tbody>
+<tr><td>Doctor</td><td>Read/Write (own patients)</td><td>Read, Order</td><td>Prescribe</td><td>None</td><td>None</td></tr>
+<tr><td>Nurse</td><td>Read/Write (ward)</td><td>Read</td><td>Read</td><td>None</td><td>None</td></tr>
+<tr><td>Lab Technician</td><td>Limited read</td><td>Read/Write results</td><td>None</td><td>None</td><td>None</td></tr>
+<tr><td>Pharmacist</td><td>Read prescriptions</td><td>None</td><td>Read/Write</td><td>None</td><td>None</td></tr>
+<tr><td>Billing Clerk</td><td>Demographics only</td><td>None</td><td>None</td><td>Read/Write</td><td>None</td></tr>
+<tr><td>IT Administrator</td><td>No clinical access</td><td>None</td><td>None</td><td>None</td><td>Privileged (PAM, MFA)</td></tr>
+</tbody></table></div>
+</div></section>
+
+<section><div class="wrap">
+<h2>Physical Controls</h2>
+<p class="lead">Safeguards for facilities where clinical systems and records physically reside.</p>
+<div class="grid g3">
+<div class="card"><h3>Physical Access Restrictions</h3><p>Data centre, network rooms and records room restricted to authorized staff; locked racks; clean-desk and screen-lock rules at nursing stations.</p></div>
+<div class="card"><h3>Biometric / Smart Card Access</h3><p>Smart card or fingerprint entry for data centre with access logs; smart-card tap-in on shared clinical workstations.</p></div>
+<div class="card"><h3>CCTV Surveillance</h3><p>Cameras on data centre, entrances and server corridors; footage retained 90 days and reviewed after incidents.</p></div>
+<div class="card"><h3>Visitor Management</h3><p>Visitor registration, photo ID, badges and escorts for vendors and contractors in sensitive areas.</p></div>
+<div class="card"><h3>Environmental Controls</h3><p>Fire detection and clean-agent suppression, UPS and generator with scheduled tests, temperature and water leak sensors.</p></div>
+<div class="card"><h3>Media &amp; Device Protection</h3><p>Secure disposal of drives and paper records, asset tags, offsite storage for backup media.</p></div>
+</div></div></section>
+
+<section class="alt"><div class="wrap">
+<h2>How the Controls Reduce Risk</h2>
+<div class="grid g2">
+<div class="card"><h3>Against MTMT Threats</h3><ul>
+<li><b>Spoofing</b> (T01–T03): MFA, vendor access governance, training.</li>
+<li><b>Tampering</b> (T04–T06): WAF and secure coding, TLS and hashing, immutable backups.</li>
+<li><b>Repudiation</b> (T07–T09): SIEM logging, unique IDs, AUP.</li>
+<li><b>Information Disclosure</b> (T10–T12): RBAC, encryption, DLP.</li>
+<li><b>Denial of Service</b> (T13–T15): DDoS protection, DR, UPS, segmentation.</li>
+<li><b>Elevation of Privilege</b> (T16–T18): patching, PAM, IoMT isolation.</li></ul></div>
+<div class="card"><h3>Improvement to NIST CSF 2.0 Posture</h3><ul>
+<li><b>Govern:</b> policies, vendor management and risk practice move from Tier 1 to 3.</li>
+<li><b>Identify:</b> asset register and vulnerability management create visibility.</li>
+<li><b>Protect:</b> MFA, RBAC, encryption and segmentation protect the Crown Jewels.</li>
+<li><b>Detect:</b> SIEM and EDR cut detection time from weeks to hours.</li>
+<li><b>Respond / Recover:</b> IR plan, immutable backups and DR testing restore operations quickly.</li></ul></div>
+</div></div></section>
+
+<footer><div class="wrap"><span>© 2026 Aegis Cyber Advisory. Academic project, MPMIS 516, University of Dhaka.</span><span>Defense in depth: administrative · technical · physical</span></div></footer>
+</body></html>

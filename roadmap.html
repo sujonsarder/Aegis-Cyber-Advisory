@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security Improvement Roadmap | Aegis Cyber Advisory</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><svg viewBox="0 0 48 48"><path d="M24 3 6 10v12c0 11 7.5 19.5 18 23 10.5-3.5 18-12 18-23V10z" fill="#14284a" stroke="#19d3c5" stroke-width="2.5"/><path d="M16 24l6 6 11-12" fill="none" stroke="#19d3c5" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Aegis Cyber Advisory<small>Risk · Resilience · Assurance</small></span></a>
+<nav><ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="client-profile.html">Client &amp; Assets</a></li>
+<li><a href="threat-modeling.html">Threat Modeling</a></li>
+<li><a href="nist-csf.html">NIST CSF 2.0</a></li>
+<li><a href="controls.html">Controls</a></li>
+<li><a class="active" href="roadmap.html">Roadmap</a></li>
+<li><a href="team.html">Team &amp; References</a></li>
+</ul></nav></div></header>
+
+<div class="pagehead"><div class="wrap"><div class="part">Part 6 · Recommendations</div><h1>Security Improvement Roadmap</h1><p>A 24-month, risk-prioritized plan that closes the most dangerous gaps first and builds toward full NIST CSF 2.0 alignment.</p></div></div>
+
+<section><div class="wrap">
+<h2>Phased Timeline</h2>
+<p class="lead">Priorities are set by business risk: threats that endanger patient safety and Crown Jewels come first.</p>
+<div class="timeline">
+
+<div class="phase"><div class="when">Short-term · 0–6 months</div><h3>Stabilize &amp; Stop the Biggest Risks</h3>
+<div class="tablewrap"><table style="min-width:680px"><thead><tr><th>#</th><th>Initiative</th><th>Threats / Gaps</th><th>Priority</th><th>Effort</th></tr></thead><tbody>
+<tr><td>S1</td><td>Enable MFA for remote access, email, VPN and all privileged accounts</td><td>T01, T03 · Protect</td><td><span class="badge High">High</span></td><td>Low</td></tr>
+<tr><td>S2</td><td>Create isolated, immutable offline backups; test first restore</td><td>T06, T14 · Recover</td><td><span class="badge High">High</span></td><td>Medium</td></tr>
+<tr><td>S3</td><td>Approve core security policy and AUP; appoint Security Manager</td><td>Govern</td><td><span class="badge High">High</span></td><td>Low</td></tr>
+<tr><td>S4</td><td>Build asset register and run first risk assessment and vulnerability scan</td><td>Identify · T16</td><td><span class="badge High">High</span></td><td>Medium</td></tr>
+<tr><td>S5</td><td>Patch critical vulnerabilities; remove shared accounts and local admin rights</td><td>T08, T16, T17</td><td><span class="badge High">High</span></td><td>Medium</td></tr>
+<tr><td>S6</td><td>Draft incident response plan and ransomware playbook; start phishing awareness</td><td>Respond · T01</td><td><span class="badge Medium">Medium</span></td><td>Low</td></tr>
+<tr><td>S7</td><td>Restrict data centre access; start visitor log</td><td>Physical</td><td><span class="badge Medium">Medium</span></td><td>Low</td></tr>
+</tbody></table></div>
+<p><b>Impact:</b> Confidentiality up through MFA; integrity and availability protected by clean backups; resilience improves because recovery becomes possible.</p></div>
+
+<div class="phase m"><div class="when">Medium-term · 6–12 months</div><h3>Build Structural Controls</h3>
+<div class="tablewrap"><table style="min-width:680px"><thead><tr><th>#</th><th>Initiative</th><th>Threats / Gaps</th><th>Priority</th><th>Effort</th></tr></thead><tbody>
+<tr><td>M1</td><td>Implement RBAC in HIS, LIS, PACS and pharmacy; quarterly access reviews; break-glass</td><td>T10, T17 · Protect</td><td><span class="badge High">High</span></td><td>High</td></tr>
+<tr><td>M2</td><td>Deploy SIEM and EDR with alert rules; central log retention</td><td>T07, T10, T14 · Detect</td><td><span class="badge High">High</span></td><td>High</td></tr>
+<tr><td>M3</td><td>Segment network: clinical, IoMT, guest, data zone; WPA3-Enterprise; WAF for portal</td><td>T04, T11, T18</td><td><span class="badge High">High</span></td><td>High</td></tr>
+<tr><td>M4</td><td>Encrypt databases, backups and laptops; TLS across internal systems</td><td>T05, T11, T12</td><td><span class="badge Medium">Medium</span></td><td>Medium</td></tr>
+<tr><td>M5</td><td>Role-based training programme and monthly phishing simulation</td><td>T01, T02</td><td><span class="badge Medium">Medium</span></td><td>Medium</td></tr>
+<tr><td>M6</td><td>Vendor risk management process; MFA and recording for vendor sessions</td><td>T03 · Govern</td><td><span class="badge Medium">Medium</span></td><td>Medium</td></tr>
+<tr><td>M7</td><td>Smart card access, CCTV and environmental monitoring in data centre</td><td>Physical · T15</td><td><span class="badge Medium">Medium</span></td><td>Medium</td></tr>
+</tbody></table></div>
+<p><b>Impact:</b> Least-privilege access protects confidentiality; logging and encryption protect integrity; segmentation limits blast radius and strengthens resilience.</p></div>
+
+<div class="phase l"><div class="when">Long-term · 12–24 months</div><h3>Optimize &amp; Sustain</h3>
+<div class="tablewrap"><table style="min-width:680px"><thead><tr><th>#</th><th>Initiative</th><th>Threats / Gaps</th><th>Priority</th><th>Effort</th></tr></thead><tbody>
+<tr><td>L1</td><td>Full alignment to NIST CSF 2.0 Tier 3; consider ISO/IEC 27001 certification</td><td>All functions</td><td><span class="badge Medium">Medium</span></td><td>High</td></tr>
+<tr><td>L2</td><td>Automated disaster recovery with scheduled failover testing and annual DR exercise</td><td>T14, T15 · Recover</td><td><span class="badge High">High</span></td><td>High</td></tr>
+<tr><td>L3</td><td>Continuous third-party risk audits and penetration tests</td><td>T03, T04, T16</td><td><span class="badge Medium">Medium</span></td><td>Medium</td></tr>
+<tr><td>L4</td><td>Privileged access management, DLP and security metrics dashboard for the board</td><td>T12, T17 · Govern</td><td><span class="badge Medium">Medium</span></td><td>Medium</td></tr>
+<tr><td>L5</td><td>Security operations maturity: threat hunting, 24/7 monitoring or managed service</td><td>Detect · Respond</td><td><span class="badge Low">Low</span></td><td>High</td></tr>
+</tbody></table></div>
+<p><b>Impact:</b> Continuous assurance keeps controls effective; tested recovery ensures the hospital can keep treating patients through disruption.</p></div>
+</div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<h2>CIA &amp; Resilience Impact by Phase</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Phase</th><th>Confidentiality</th><th>Integrity</th><th>Availability</th><th>Resilience</th></tr></thead>
+<tbody>
+<tr><td><b>0–6 months</b></td><td>MFA blocks most credential-based access to records</td><td>Patching and removal of shared accounts reduce unauthorised change</td><td>Immutable backups protect service restoration</td><td>First tested restore proves recovery is possible</td></tr>
+<tr><td><b>6–12 months</b></td><td>RBAC and encryption limit exposure of patient data</td><td>SIEM, audit logs and TLS detect and prevent tampering</td><td>Segmentation and EDR contain outages</td><td>Faster detection and containment</td></tr>
+<tr><td><b>12–24 months</b></td><td>PAM and DLP govern data leaving the organization</td><td>Continuous testing verifies control effectiveness</td><td>Automated DR targets short recovery times</td><td>Mature, repeatable, auditable programme</td></tr>
+</tbody></table></div>
+
+<h2 style="margin-top:36px">Messages for Management</h2>
+<div class="grid g3">
+<div class="card"><h3>1. Act now on identity and backup</h3><p>MFA and isolated backups are low-cost steps that remove the likeliest routes to a hospital-wide outage.</p></div>
+<div class="card"><h3>2. Protect the Crown Jewels first</h3><p>Spending follows patient safety and data sensitivity: EMR, clinical systems, credentials and backups.</p></div>
+<div class="card"><h3>3. Govern and measure</h3><p>Appoint ownership, report quarterly and track CSF maturity so investment shows measurable risk reduction.</p></div>
+</div>
+<div class="callout"><b>Feasibility note:</b> Short-term actions rely largely on existing licences and staff; medium and long-term items need budget approval and may use phased procurement or managed services. Cost figures should be added after vendor quotations.</div>
+</div></section>
+
+<footer><div class="wrap"><span>© 2026 Aegis Cyber Advisory. Academic project, MPMIS 516, University of Dhaka.</span><span>Roadmap horizon: 24 months</span></div></footer>
+</body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Client Profile &amp; Asset Register | Aegis Cyber Advisory</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><svg viewBox="0 0 48 48"><path d="M24 3 6 10v12c0 11 7.5 19.5 18 23 10.5-3.5 18-12 18-23V10z" fill="#14284a" stroke="#19d3c5" stroke-width="2.5"/><path d="M16 24l6 6 11-12" fill="none" stroke="#19d3c5" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Aegis Cyber Advisory<small>Risk · Resilience · Assurance</small></span></a>
+<nav><ul>
+<li><a href="index.html">Home</a></li>
+<li><a class="active" href="client-profile.html">Client &amp; Assets</a></li>
+<li><a href="threat-modeling.html">Threat Modeling</a></li>
+<li><a href="nist-csf.html">NIST CSF 2.0</a></li>
+<li><a href="controls.html">Controls</a></li>
+<li><a href="roadmap.html">Roadmap</a></li>
+<li><a href="team.html">Team &amp; References</a></li>
+</ul></nav></div></header>
+
+<div class="pagehead"><div class="wrap"><div class="part">Parts 1 &amp; 2 · Discovery</div><h1>Client Profile &amp; Information Asset Register</h1><p>Understanding the business, its critical processes and the information assets that must be protected most.</p></div></div>
+
+<section><div class="wrap">
+<h2>Organization Overview</h2>
+<p class="lead">Lifeline Medical Centre (LMC) is a hypothetical private tertiary-care hospital in Dhaka providing inpatient, outpatient, emergency, diagnostic and pharmacy services.</p>
+<div class="grid g4">
+<div class="card stat"><b>Healthcare</b><span>Industry sector</span></div>
+<div class="card stat"><b>250 beds</b><span>Approx. size</span></div>
+<div class="card stat"><b>~900</b><span>Staff (doctors, nurses, admin, IT)</span></div>
+<div class="card stat"><b>~1,200</b><span>Daily outpatient visits</span></div>
+</div>
+<div class="grid g2" style="margin-top:22px">
+<div class="card"><h3>Core Business Operations</h3><ul>
+<li>Outpatient consultation and specialist clinics</li>
+<li>Inpatient admission, surgery and intensive care</li>
+<li>24/7 emergency services</li>
+<li>Laboratory and radiology diagnostics</li>
+<li>In-house pharmacy</li>
+<li>Billing, insurance claims and payments</li>
+<li>Online appointments and report access via portal/mobile app</li></ul></div>
+<div class="card"><h3>Major Information Systems</h3><ul>
+<li><b>HIS / EMR:</b> patient registration, clinical notes, orders, discharge</li>
+<li><b>LIS:</b> laboratory information system</li>
+<li><b>RIS/PACS:</b> radiology imaging and storage</li>
+<li><b>Pharmacy system:</b> dispensing and inventory</li>
+<li><b>Billing / ERP:</b> finance, HR and payroll</li>
+<li><b>Patient portal &amp; mobile app</b> with payment gateway</li>
+<li><b>Infrastructure:</b> on-premise data centre, LAN/Wi-Fi, email, backup</li></ul></div>
+</div>
+<h3 style="margin-top:28px">Critical Business Processes</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Process</th><th>Description</th><th>Supporting Systems</th><th>Criticality</th></tr></thead>
+<tbody>
+<tr><td>Patient registration &amp; admission</td><td>Capture identity, history and insurance details</td><td>HIS/EMR</td><td><span class="badge High">High</span></td></tr>
+<tr><td>Clinical care &amp; documentation</td><td>Diagnosis, prescriptions, orders, clinical notes</td><td>HIS/EMR, LIS, RIS/PACS</td><td><span class="badge High">High</span></td></tr>
+<tr><td>Diagnostics reporting</td><td>Lab and imaging results delivered to clinicians and patients</td><td>LIS, RIS/PACS, Portal</td><td><span class="badge High">High</span></td></tr>
+<tr><td>Medication management</td><td>Prescribing, dispensing, stock control</td><td>Pharmacy, HIS</td><td><span class="badge High">High</span></td></tr>
+<tr><td>Billing &amp; payment</td><td>Invoices, insurance claims, online payment</td><td>Billing/ERP, Payment gateway</td><td><span class="badge Medium">Medium</span></td></tr>
+<tr><td>HR &amp; payroll</td><td>Staff records, attendance, salary</td><td>ERP</td><td><span class="badge Medium">Medium</span></td></tr>
+</tbody></table></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<h2>💎 Crown Jewels</h2>
+<p class="lead">The assets whose loss, corruption or unavailability would cause the greatest harm to patients, operations and reputation.</p>
+<div class="grid g3">
+<div class="card"><h3>1. Electronic Patient Records (EMR)</h3><p>Identity, diagnoses, treatment and history. Subject to privacy obligations and essential for safe care.</p></div>
+<div class="card"><h3>2. HIS/EMR &amp; Clinical Systems</h3><p>Availability of HIS, LIS and PACS directly affects patient safety; downtime forces paper-based, error-prone care.</p></div>
+<div class="card"><h3>3. Diagnostic Results &amp; Imaging</h3><p>Integrity of lab values and images is vital; tampering could lead to wrong treatment.</p></div>
+<div class="card"><h3>4. Prescription &amp; Pharmacy Data</h3><p>Incorrect or altered medication data creates direct patient safety risk.</p></div>
+<div class="card"><h3>5. Patient Financial &amp; Payment Data</h3><p>Billing, insurance and payment details attract fraud and criminal interest.</p></div>
+<div class="card"><h3>6. Privileged Credentials &amp; Backups</h3><p>Admin accounts and backup repositories; their compromise enables total system takeover and prevents recovery.</p></div>
+</div></div></section>
+
+<section><div class="wrap">
+<h2>Information Asset Register</h2>
+<p class="lead">C = Confidentiality, I = Integrity, A = Availability requirement. Ratings: High, Medium, Low.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>#</th><th>Asset Name</th><th>Asset Owner</th><th>Confidentiality</th><th>Integrity</th><th>Availability</th><th>Crown Jewel</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Patient Records (EMR)</td><td>Medical Director</td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td>✔</td></tr>
+<tr><td>2</td><td>Hospital Information System (HIS) application</td><td>Chief Information Officer</td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td>✔</td></tr>
+<tr><td>3</td><td>Laboratory Results (LIS)</td><td>Head of Pathology</td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td><span class="cia Medium">Medium</span></td><td>✔</td></tr>
+<tr><td>4</td><td>Radiology Images (PACS)</td><td>Head of Radiology</td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td><span class="cia Medium">Medium</span></td><td>✔</td></tr>
+<tr><td>5</td><td>Prescription &amp; Pharmacy Data</td><td>Chief Pharmacist</td><td><span class="cia Medium">Medium</span></td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td>✔</td></tr>
+<tr><td>6</td><td>Patient Financial &amp; Payment Data</td><td>Chief Financial Officer</td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td><span class="cia Medium">Medium</span></td><td>✔</td></tr>
+<tr><td>7</td><td>Privileged Credentials &amp; Identity Directory</td><td>IT Security Manager</td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td>✔</td></tr>
+<tr><td>8</td><td>Backup Repository</td><td>IT Operations Manager</td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td>✔</td></tr>
+<tr><td>9</td><td>Patient Portal &amp; Mobile App</td><td>Head of Digital Services</td><td><span class="cia Medium">Medium</span></td><td><span class="cia High">High</span></td><td><span class="cia Medium">Medium</span></td><td></td></tr>
+<tr><td>10</td><td>Staff HR &amp; Payroll Records</td><td>HR Director</td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td><span class="cia Low">Low</span></td><td></td></tr>
+<tr><td>11</td><td>Email &amp; Collaboration Platform</td><td>Chief Information Officer</td><td><span class="cia Medium">Medium</span></td><td><span class="cia Medium">Medium</span></td><td><span class="cia Medium">Medium</span></td><td></td></tr>
+<tr><td>12</td><td>Network Infrastructure (LAN/Wi-Fi/VPN)</td><td>IT Operations Manager</td><td><span class="cia Medium">Medium</span></td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td></td></tr>
+<tr><td>13</td><td>Medical Device Network (IoMT)</td><td>Biomedical Engineering Head</td><td><span class="cia Low">Low</span></td><td><span class="cia High">High</span></td><td><span class="cia High">High</span></td><td></td></tr>
+<tr><td>14</td><td>Hospital Website &amp; Public Content</td><td>Marketing Manager</td><td><span class="cia Low">Low</span></td><td><span class="cia Medium">Medium</span></td><td><span class="cia Low">Low</span></td><td></td></tr>
+</tbody></table></div>
+</div></section>
+
+<footer><div class="wrap"><span>© 2026 Aegis Cyber Advisory. Academic project, MPMIS 516, University of Dhaka.</span><span>Fictional client for educational use</span></div></footer>
+</body></html>
